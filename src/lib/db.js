@@ -8,7 +8,7 @@ const pool = mysql.createPool({
   // port: process.env.MYSQL_PORT,
 });
 
-export async function query({ query, values = [] }) {
+export async function dbQuery({ query, values = [] }) {
   const dbconnection = pool.promise();
   try {
     const [rows, fields] = await dbconnection.execute(query, values);
