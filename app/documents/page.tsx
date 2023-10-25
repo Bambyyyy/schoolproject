@@ -34,8 +34,15 @@ export default function Documents() {
     }
   };
 
+  const handleSinglePost = async (post: Post) => {
+    const res = await fetch("http://localhost:3000/api/docs/" + post.id);
+    const data = await res.json();
+    console.log(data[0]);
+  };
+
   const documentData = (posts as Post[]).map((post: Post) => (
     <div
+      onClick={() => handleSinglePost(post)}
       key={post.id}
       className="bg-slate-500 m-2 p-4 max-w-lg rounded-[15px] min-w-full md:min-w-[70%] md:max-w-[100%]"
     >
@@ -50,7 +57,7 @@ export default function Documents() {
       </button>
       <button
         onClick={(e) => handleDelete(post)}
-        className="bg-slate-200 m-1 p-2 min-w-[60px] rounded-[7px]"
+        className="bg-red-300 m-1 p-2 min-w-[60px] rounded-[7px]"
       >
         Delete
       </button>

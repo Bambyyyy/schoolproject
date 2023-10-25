@@ -41,8 +41,8 @@ export default function EditDoc() {
   };
 
   return (
-    <div className="max-w-7xl m-auto min-h-screen text-center p-10">
-      <h1>Edit document</h1>
+    <div className="flex items-center flex-col max-w-7xl m-auto min-h-screen text-center p-10 bg-slate-400">
+      <h1 className="font-bold text-[30px]">Edit document</h1>
       {completeDoc ? (
         <form
           onSubmit={handleSubmit}
@@ -53,7 +53,7 @@ export default function EditDoc() {
             value={title}
             placeholder={completeDoc.title}
             onChange={(e) => setTitle(e.target.value)}
-            className="min-w-[400px] min-h-[40px] p-2 text-lg"
+            className="rounded-[7px] min-w-[400px] min-h-[40px] p-2 text-lg"
           />
 
           <br />
@@ -63,10 +63,15 @@ export default function EditDoc() {
             value={description}
             placeholder={completeDoc.description}
             onChange={(e) => setDescription(e.target.value)}
-            className="min-w-[400px] min-h-[100px] p-2 text-lg"
+            className="rounded-[7px] min-w-[400px] min-h-[100px] p-2 text-lg"
           />
 
-          <button type="submit">Save</button>
+          <button
+            className=" text-#e5e7eb rounded-[7px] m-2 ml-0 p-2 bg-white min-w-[60px]"
+            type="submit"
+          >
+            Save
+          </button>
         </form>
       ) : (
         <div>Laddar...</div>
