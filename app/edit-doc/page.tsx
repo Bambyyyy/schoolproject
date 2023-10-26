@@ -13,7 +13,6 @@ export default function EditDoc() {
 
   const searchParams = useSearchParams();
   const docId = searchParams?.get("id");
-  console.log("docId", docId);
 
   useEffect(() => {
     const getDocument = async () => {
@@ -27,6 +26,7 @@ export default function EditDoc() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!title || !description) return;
     const res = await fetch("api/docs/" + docId, {
       method: "PATCH",
       headers: {
@@ -41,19 +41,19 @@ export default function EditDoc() {
   };
 
   return (
-    <div className="flex items-center flex-col max-w-7xl m-auto min-h-screen text-center p-10 bg-slate-400">
+    <div className="flex items-center flex-col max-w-[2000px] m-auto min-h-screen text-center p-10 bg-slate-400">
       <h1 className="font-bold text-[30px]">Edit document</h1>
       {completeDoc ? (
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-start m-20"
+          className="flex flex-col items-start m-20 xs:w-[90%] md:w-[60%] lg:w-[30%]"
         >
           <label>Title</label>
           <input
             value={title}
             placeholder={completeDoc.title}
             onChange={(e) => setTitle(e.target.value)}
-            className="rounded-[7px] min-w-[400px] min-h-[40px] p-2 text-lg"
+            className="rounded-[7px] w-[100%] min-w-[30%] min-h-[40px] p-2 text-lg"
           />
 
           <br />
@@ -63,11 +63,11 @@ export default function EditDoc() {
             value={description}
             placeholder={completeDoc.description}
             onChange={(e) => setDescription(e.target.value)}
-            className="rounded-[7px] min-w-[400px] min-h-[100px] p-2 text-lg"
+            className="rounded-[7px] w-[100%] min-w-[40%] min-h-[100px] p-2 text-lg"
           />
 
           <button
-            className=" text-#e5e7eb rounded-[7px] m-2 ml-0 p-2 bg-white min-w-[60px]"
+            className=" text-#e5e7eb rounded-[7px] m-2 mt-6 ml-0 p-2 bg-white min-w-[100px] transition-[0.5s] hover:scale-105"
             type="submit"
           >
             Save
