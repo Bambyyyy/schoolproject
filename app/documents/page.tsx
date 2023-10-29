@@ -46,7 +46,7 @@ export default function Documents() {
       className="bg-slate-500 m-2 p-4 max-w-lg rounded-[15px] min-w-full md:min-w-[30%] md:max-w-[30%] transition-[0.5s] hover:scale-105"
     >
       <h1 className="text-[25px] font-bold">{post.title}</h1>
-      <p>{post.description}</p>
+      <p>{post.description.split(". ")[0] + "..."}</p>
       <p>{post.createdAt.toString().split("T")[0]}</p>
       <button
         onClick={() => handleSinglePost(post)}

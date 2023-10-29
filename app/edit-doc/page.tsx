@@ -20,6 +20,8 @@ export default function EditDoc() {
       const data = await res.json();
       console.log("Vårt dokument", data[0]);
       setCompleteDoc(data[0]);
+      setTitle(data[0].title);
+      setDescription(data[0].description);
     };
     if (docId) getDocument();
   }, [docId]);
@@ -51,7 +53,6 @@ export default function EditDoc() {
           <label>Title</label>
           <input
             value={title}
-            placeholder={completeDoc.title}
             onChange={(e) => setTitle(e.target.value)}
             className="rounded-[7px] w-[100%] min-w-[30%] min-h-[40px] p-2 text-lg"
           />
@@ -61,7 +62,6 @@ export default function EditDoc() {
           <label>Description</label>
           <textarea
             value={description}
-            placeholder={completeDoc.description}
             onChange={(e) => setDescription(e.target.value)}
             className="rounded-[7px] w-[100%] min-w-[40%] min-h-[100px] p-2 text-lg"
           />
